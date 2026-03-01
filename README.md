@@ -38,7 +38,7 @@
 
 ```bash
 # Клонируем репозиторий
-git clone https://git.fofiki.ru/megafofik/CertKeeper.git
+git clone [https://git.fofiki.ru/megafofik/CertKeeper.git](https://github.com/lind1745/CertKeeper.git)
 cd certkeeper
 
 # Запускаем в Docker
