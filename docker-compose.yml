@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  utm-monitor:
+    build: .
+    container_name: utm-cert-monitor
+    restart: unless-stopped
+    ports:
+      - "5000:5000"  # Пробрасываем порт наружу
+    volumes:
+      # Пробрасываем папку с данными наружу, чтобы не потерять при пересоздании контейнера
+      - ./data:/app/utm_cert_data
+      # Если нужно менять код без пересборки (для разработки)
+      # - ./utm_cert_server.py:/app/utm_cert_server.py
+    environment:
+      - TZ=Asia/Yekaterinburg  # Часовой пояс (можно заменить на ваш)
+      - FLASK_ENV=production
+    networks:
+      - utm-network
+
+# Создаем внутреннюю сеть (на всякий случай)
+networks:
+  utm-network:
+    driver: bridge
