@@ -46,6 +46,7 @@ docker-compose up -d
 
 #Сервер будет доступен по адресу: http://ВАШ_IP:5000
 ```
+<img width="1479" height="763" alt="Screenshot_301" src="https://github.com/user-attachments/assets/3b113e12-444d-4830-b8b5-be6b9da6dc04" />
 
 ### Клиентская часть (Windows)
 
