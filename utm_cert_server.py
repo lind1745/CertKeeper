@@ -1340,8 +1340,10 @@ def generate_computer_row(comp_name, data, scroll_to=None):
     opensc_status = "✅" if data.get('opensc_installed') else "❌"
     driver_status = "✅" if data.get('rutoken_driver') else "❌"
     
-    # Создаем ID для якоря (заменяем спецсимволы)
-    anchor_id = f"computer-{comp_name.replace(' ', '-').replace('.', '-').replace('\\', '-').replace('/', '-')}"
+    # ИСПРАВЛЕНО: выносим replace с обратным слешем за пределы f-строки
+    clean_name = comp_name.replace(' ', '-').replace('.', '-').replace('/', '-')
+    clean_name = clean_name.replace('\\', '-')
+    anchor_id = f"computer-{clean_name}"
     
     utm_certs_html = ""
     utm_certs = data.get('utm_certificates', [])
@@ -1439,7 +1441,11 @@ def generate_search_results(results, query):
     """
     
     for result in results:
-        anchor_id = f"computer-{result['computer_name'].replace(' ', '-').replace('.', '-').replace('\\', '-').replace('/', '-')}"
+        # ИСПРАВЛЕНО: выносим replace с обратным слешем за пределы f-строки
+        clean_name = result['computer_name'].replace(' ', '-').replace('.', '-').replace('/', '-')
+        clean_name = clean_name.replace('\\', '-')
+        anchor_id = f"computer-{clean_name}"
+        
         html += f"""
         <div class="search-match">
             <a href="#{anchor_id}" class="computer-link" onclick="scrollToComputer('{result['computer_name']}'); return false;">
